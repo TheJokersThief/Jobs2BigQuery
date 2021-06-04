@@ -1,6 +1,8 @@
+import html
 import time
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from markdownify import markdownify as md
 from typing import List
 
 from jobs2bigquery.http import HTTPRequests
@@ -36,7 +38,7 @@ class GreenHouseListing(BaseListing):
         print(repr(listings[0]))
         return [
             Listing(
-                url=listing['absolute_url'], content=listing['content'],
+                url=listing['absolute_url'], content=md(html.unescape(listing['content'])),
                 location=[loc['name'] for loc in listing['offices']],
                 department=[dep['name'] for dep in listing['departments']],
                 last_updated=listing['updated_at'], title=listing['title'].strip()
