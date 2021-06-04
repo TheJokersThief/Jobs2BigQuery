@@ -19,8 +19,7 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - build_image:
-          name: deploy_cloud_function
+      - deploy_cloud_function:
           context:
             - iamevan-me/gcp
           filters:
