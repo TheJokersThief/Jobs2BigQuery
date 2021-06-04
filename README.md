@@ -54,7 +54,7 @@ Published
 
 # Sending your first payload
 
-After deployment, you can visit the function in the console and go to the `Testing` tab. There's an example of a payload in [deploy/pubsub_payload.json](deploy/pubsub_payload.json) and [example_pubsub_payload.json](example_pubsub_payload.json).
+After deployment, you can visit the function in the console and go to the `Testing` tab. There's an example of a payload in [deploy/pubsub_payload.json](deploy/pubsub_payload.json).
 
 ## Publish pubub messages
 
