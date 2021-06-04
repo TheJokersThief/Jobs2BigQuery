@@ -1,0 +1,28 @@
+version: 2.1
+orbs:
+  gcp-cli: circleci/gcp-cli@2.1.0
+
+jobs:
+  deploy_cloud_function:
+    working_directory: ~/ava
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - gcp-cli/initialize
+      - run:
+          name: "Deploy Cloud Function"
+          command: |
+            make publish
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build_image:
+          name: deploy_cloud_function
+          context:
+            - iamevan-me/gcp
+          filters:
+             branches:
+               only: master
