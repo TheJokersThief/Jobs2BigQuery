@@ -9,6 +9,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - checkout
+      - gcp-cli/install
       - gcp-cli/initialize
       - run:
           name: "Deploy Cloud Function"
