@@ -1,1 +1,8 @@
-{}
+{
+    "bq_table_id": "jobs.job-listings",
+    "lists": {
+        "greenhouse": [
+            "notion"
+        ]
+    }
+}
