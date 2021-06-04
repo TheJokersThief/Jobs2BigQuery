@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "jobs2bigquery"
+version = "1.0.0"
+description = "Scrapes job listings and puts the data in bigquery"
+authors = ["Evan Smith <me@iamevan.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "=3.8.7"
+rich = "^9.5.1"
+daft-scraper = "^1.2.7"
+google-cloud-bigquery = "*"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+pylint = "^2.6.0"
+
+[tool.pylint]
+disable = "import-error"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

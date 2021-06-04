@@ -1,0 +1,123 @@
+[
+    {
+        "name": "id",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "title",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "price",
+        "type": "FLOAT",
+        "mode": "REQUIRED",
+        "fields": []
+    },
+    {
+        "name": "url",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "sections_0",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "sections_1",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "sections_2",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "featuredLevel",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "publishDate",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "entryDate",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "category",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "numBedrooms",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "numBathrooms",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "propertyType",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "media_totalImages",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "media_hasBrochure",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "media_hasVirtualTour",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "ber_rating",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "description",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "county_0",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "area_0",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "views",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "point_coordinates_0",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "point_coordinates_1",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+    }
+]
