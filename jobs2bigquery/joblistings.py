@@ -1,5 +1,7 @@
+import time
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import List
 
 from jobs2bigquery.http import HTTPRequests
 
@@ -9,10 +11,11 @@ class Listing(object):
     title: str
     url: str
     content: str
-    locations: list[str]
-    departments: list[str]
+    location: List[str]
+    department: List[str]
 
     last_updated: str = None
+    logged_at: int = int(time.time())
 
 
 class BaseListing(ABC):
@@ -21,20 +24,22 @@ class BaseListing(ABC):
         self.reqs = HTTPRequests()
 
     @abstractmethod
-    def get_jobs(self) -> list[Listing]:
+    def get_jobs(self) -> List[Listing]:
         pass
 
 
 class GreenHouseListing(BaseListing):
     LISTING_URL = "https://boards-api.greenhouse.io/v1/boards/{company_id}/jobs?content=true"
 
-    def get_jobs(self) -> list[Listing]:
-        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.url)).json()
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.url)).json()['jobs']
+        print(repr(listings[0]))
         return [
             Listing(
                 url=listing['absolute_url'], content=listing['content'],
-                locations=[loc['name'] for loc in listing['locations']],
-                departments=[dep['name'] for dep in listing['departments']]
-            )
+                location=[loc['name'] for loc in listing['offices']],
+                department=[dep['name'] for dep in listing['departments']],
+                last_updated=listing['updated_at'], title=listing['title'].strip()
+            ).__dict__
             for listing in listings
         ]
