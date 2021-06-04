@@ -11,6 +11,7 @@ python = "=3.8.7"
 rich = "^9.5.1"
 daft-scraper = "^1.2.7"
 google-cloud-bigquery = "*"
+urllib3 = "^1.26.5"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"
