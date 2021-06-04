@@ -26,7 +26,12 @@
     },
     {
         "name": "last_updated",
-        "type": "STRING",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "logged_at",
+        "type": "TIMESTAMP",
         "mode": "NULLABLE"
     }
 ]
