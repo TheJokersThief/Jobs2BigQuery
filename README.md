@@ -11,6 +11,7 @@ Imports daft data to a bigquery table in an idempotent fashion.
 - [Sending your first payload](#sending-your-first-payload)
   - [Publish pubub messages](#publish-pubub-messages)
 - [Setting up a scheduled run](#setting-up-a-scheduled-run)
+- [Data Studio](#data-studio)
 
 
 
@@ -70,3 +71,21 @@ messageIds:
 # Setting up a scheduled run
 
 Cloud Scheduler is a neat way to automate time-based cloud functions. Use the payload example from above.
+
+# Data Studio
+
+The main downside to my approach is that it produces a large number of duplicated entries, which have to be deduplicated if you want to graph it.
+
+I've used the following connection SQL to take the most recent entry for a listing:
+
+```
+SELECT *
+FROM `jobs.job-listings`
+WHERE logged_at IN (
+    SELECT MAX(logged_at)
+    FROM `jobs.job-listings`
+    GROUP BY url
+)
+```
+
+![](misc/preview.png)
