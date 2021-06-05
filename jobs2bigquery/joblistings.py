@@ -86,3 +86,20 @@ class HireHiveListing(BaseListing):
             ).__dict__
             for listing in listings
         ]
+
+
+class WorkableListing(BaseListing):
+    LISTING_URL = "https://apply.workable.com/api/v1/widget/accounts/{company_id}?details=true"
+
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.company_id)).json()['jobs']
+        return [
+            Listing(
+                company=self.company_id,
+                url=listing['url'], content=md(listing['description']),
+                location=[f"{listing['city']}, {listing['state']}, {listing['country']}"],
+                department=[listing['department']],
+                last_updated=listing['published_on'] + " 00:00", title=listing['title'].strip()
+            ).__dict__
+            for listing in listings
+        ]

@@ -2,12 +2,13 @@ import base64
 import json
 
 from jobs2bigquery import bigquery
-from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing
+from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing, WorkableListing
 
 PROCESSORS = {
     "greenhouse": GreenHouseListing,
     "lever": LeverListing,
     "hirehive": HireHiveListing,
+    "workable": WorkableListing,
 }
 
 
