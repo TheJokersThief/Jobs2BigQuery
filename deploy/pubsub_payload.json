@@ -6,6 +6,9 @@
         ],
         "lever": [
             "grafana"
+        ],
+        "hirehive": [
+            "voltedge"
         ]
     }
 }

@@ -2,7 +2,7 @@ import base64
 import json
 
 from jobs2bigquery import bigquery
-from jobs2bigquery.joblistings import GreenHouseListing, LeverListing
+from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing
 
 
 def ingest_pubsub(event, context):
@@ -21,5 +21,11 @@ def ingest_pubsub(event, context):
     lever_lists = event['lists']['lever']
     for company_id in lever_lists:
         results = LeverListing(company_id).get_jobs()
+        if len(results) > 0:
+            bq.insert_rows(results)
+
+    hirehive_lists = event['lists']['hirehive']
+    for company_id in hirehive_lists:
+        results = HireHiveListing(company_id).get_jobs()
         if len(results) > 0:
             bq.insert_rows(results)
