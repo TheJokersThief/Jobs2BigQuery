@@ -3,6 +3,9 @@
     "lists": {
         "greenhouse": [
             "notion"
+        ],
+        "lever": [
+            "grafana"
         ]
     }
 }

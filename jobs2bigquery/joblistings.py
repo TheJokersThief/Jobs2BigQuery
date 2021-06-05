@@ -36,14 +36,30 @@ class GreenHouseListing(BaseListing):
 
     def get_jobs(self) -> List[Listing]:
         listings = self.reqs.get(self.LISTING_URL.format(company_id=self.url)).json()['jobs']
-        print(repr(listings[0]))
         return [
             Listing(
                 company=self.url,
                 url=listing['absolute_url'], content=md(html.unescape(listing['content'])),
                 location=[loc['name'] for loc in listing['offices']],
                 department=[dep['name'] for dep in listing['departments']],
-                last_updated=listing['updated_at'], title=listing['title'].strip()
+                last_updated=listing['createdAt'], title=listing['title'].strip()
+            ).__dict__
+            for listing in listings
+        ]
+
+
+class LeverListing(BaseListing):
+    LISTING_URL = "https://api.lever.co/v0/postings/{company_id}"
+
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.url)).json()
+        return [
+            Listing(
+                company=self.url,
+                url=listing['hostedUrl'], content=listing['descriptionPlain'],
+                location=listing['categories']['location'].split(' or '),
+                department=[listing['categories']['team']],
+                last_updated=listing['createdAt'] // 1000, title=listing['text'].strip()
             ).__dict__
             for listing in listings
         ]

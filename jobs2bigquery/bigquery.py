@@ -11,7 +11,7 @@ class BigQuery():
             self.table_id, rows
         )
         if errors == []:
-            print("New rows have been added.")
+            print(f"{len(rows)} rows have been added.")
         else:
             print("Encountered errors while inserting rows: {}".format(errors))
             raise Exception(errors)
