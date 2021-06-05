@@ -69,7 +69,13 @@ class HireHiveListing(BaseListing):
     LISTING_URL = "https://{company_id}.hirehive.com/api/v1/jobs"
 
     def get_jobs(self) -> List[Listing]:
-        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.company_id)).json()['jobs']
+        listings = []
+        next_page = self.LISTING_URL.format(company_id=self.company_id)
+        while next_page:
+            results = self.reqs.get(next_page).json()
+            next_page = results['nextPage']
+            listings.extend(results['jobs'])
+
         return [
             Listing(
                 company=self.company_id,
