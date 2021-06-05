@@ -4,6 +4,12 @@ import json
 from jobs2bigquery import bigquery
 from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing
 
+PROCESSORS = {
+    "greenhouse": GreenHouseListing,
+    "lever": LeverListing,
+    "hirehive": HireHiveListing,
+}
+
 
 def ingest_pubsub(event, context):
     if '@type' in event and event['@type'] == 'type.googleapis.com/google.pubsub.v1.PubsubMessage':
@@ -12,20 +18,14 @@ def ingest_pubsub(event, context):
 
     bq = bigquery.BigQuery(event)
 
-    gh_lists = event['lists']['greenhouse']
-    for company_id in gh_lists:
-        results = GreenHouseListing(company_id).get_jobs()
-        if len(results) > 0:
-            bq.insert_rows(results)
+    for list_name, list_cls in PROCESSORS.items():
+        if list_name in event['lists']:
+            process_list(bq, event, list_name, list_cls)
 
-    lever_lists = event['lists']['lever']
-    for company_id in lever_lists:
-        results = LeverListing(company_id).get_jobs()
-        if len(results) > 0:
-            bq.insert_rows(results)
 
-    hirehive_lists = event['lists']['hirehive']
-    for company_id in hirehive_lists:
-        results = HireHiveListing(company_id).get_jobs()
+def process_list(bq, event, list_name, list_type_cls):
+    list_items = event['lists'][list_name]
+    for company_id in list_items:
+        results = list_type_cls(company_id).get_jobs()
         if len(results) > 0:
             bq.insert_rows(results)
