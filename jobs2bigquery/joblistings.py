@@ -10,6 +10,7 @@ from jobs2bigquery.http import HTTPRequests
 
 @dataclass
 class Listing(object):
+    company: str
     title: str
     url: str
     content: str
@@ -38,6 +39,7 @@ class GreenHouseListing(BaseListing):
         print(repr(listings[0]))
         return [
             Listing(
+                company=self.url,
                 url=listing['absolute_url'], content=md(html.unescape(listing['content'])),
                 location=[loc['name'] for loc in listing['offices']],
                 department=[dep['name'] for dep in listing['departments']],

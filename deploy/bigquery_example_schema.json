@@ -10,6 +10,11 @@
         "mode": "NULLABLE"
     },
     {
+        "name": "company",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
         "name": "content",
         "type": "STRING",
         "mode": "NULLABLE"
