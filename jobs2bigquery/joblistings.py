@@ -44,7 +44,7 @@ class GreenHouseListing(BaseListing):
                 company=self.company_id,
                 url=listing['absolute_url'], content=md(html.unescape(listing['content'])),
                 location=[loc['name'] for loc in listing['offices']],
-                department=[dep['name'] for dep in listing['departments']],
+                department=[dep['name'] for dep in listing['departments'] or "None"],
                 last_updated=listing['updated_at'], title=listing['title'].strip()
             ).__dict__
             for listing in listings
@@ -61,7 +61,7 @@ class LeverListing(BaseListing):
                 company=self.company_id,
                 url=listing['hostedUrl'], content=listing['descriptionPlain'],
                 location=listing['categories']['location'].split(' or '),
-                department=[listing['categories']['team']],
+                department=[listing['categories']['team'] or "None"],
                 last_updated=listing['createdAt'] // 1000, title=listing['text'].strip()
             ).__dict__
             for listing in listings
@@ -84,7 +84,7 @@ class HireHiveListing(BaseListing):
                 company=self.company_id,
                 url=listing['hostedUrl'], content=listing['description']['text'],
                 location=[listing['location'], listing['country']['name']],
-                department=[listing['category'] or ""],
+                department=[listing['category'] or "None"],
                 last_updated=listing['publishedDate'], title=listing['title'].strip()
             ).__dict__
             for listing in listings
@@ -101,7 +101,7 @@ class WorkableListing(BaseListing):
                 company=self.company_id,
                 url=listing['url'], content=md(listing['description']),
                 location=[f"{listing['city']}, {listing['state']}, {listing['country']}"],
-                department=[listing['department']],
+                department=[listing['department'] or "None"],
                 last_updated=listing['published_on'] + " 00:00", title=listing['title'].strip()
             ).__dict__
             for listing in listings
@@ -138,7 +138,7 @@ class WorkdayListing(BaseListing):
             listings.append(
                 Listing(
                     company=self.company_id, url=job_url, content=None,
-                    location=[listing['subtitles'][1]['instances'][0]['text']], department=[""],
+                    location=[listing['subtitles'][1]['instances'][0]['text']], department=["None"],
                     last_updated=job_date, title=listing['title']['instances'][0]['text']
                 ).__dict__
             )

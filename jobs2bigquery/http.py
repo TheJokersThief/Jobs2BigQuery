@@ -15,7 +15,7 @@ class HTTPSession(requests.Session):
         if not user_agent:
             user_agent = HTTPSession.DEFAULT_USER_AGENT
 
-        self.headers.update({'User-Agent': user_agent})
+        self.headers.update({'User-Agent': user_agent, 'Accept': 'application/json'})
 
 
 class HTTPRequests():
