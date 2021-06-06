@@ -44,7 +44,7 @@ class GreenHouseListing(BaseListing):
                 company=self.company_id,
                 url=listing['absolute_url'], content=md(html.unescape(listing['content'])),
                 location=[loc['name'] for loc in listing['offices']],
-                department=[dep['name'] for dep in listing['departments'] or "None"],
+                department=[dep['name'] for dep in listing['departments']],
                 last_updated=listing['updated_at'], title=listing['title'].strip()
             ).__dict__
             for listing in listings
@@ -61,7 +61,7 @@ class LeverListing(BaseListing):
                 company=self.company_id,
                 url=listing['hostedUrl'], content=listing['descriptionPlain'],
                 location=listing['categories']['location'].split(' or '),
-                department=[listing['categories']['team'] or "None"],
+                department=[listing['categories']['team']],
                 last_updated=listing['createdAt'] // 1000, title=listing['text'].strip()
             ).__dict__
             for listing in listings
