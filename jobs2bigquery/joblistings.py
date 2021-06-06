@@ -166,3 +166,32 @@ class WorkdayListing(BaseListing):
                 else:
                     raise e
         return listings
+
+
+class SmartRecruiterListing(BaseListing):
+    LISTING_URL = "https://api.smartrecruiters.com/v1/companies/{company_id}/postings"
+
+    def get_jobs(self) -> List[Listing]:
+        listings = []
+        url = self.LISTING_URL.format(company_id=self.company_id)
+        stop_running = False
+        while not stop_running:
+            results = self.reqs.get(url, params={'offset': len(listings)}).json()
+            listings.extend(results['content'])
+
+            if len(listings) >= results['totalFound']:
+                stop_running = True
+
+        return [
+            Listing(
+                company=self.company_id,
+                url=listing['ref'], content=None,
+                location=[
+                    f"{listing['location']['city']}, {listing['location']['country']}"
+                    + " Remote" if listing['location']['remote'] else ""
+                ],
+                department=[listing['department'].get('label', "None")],
+                last_updated=listing['releasedDate'], title=listing['name'].strip()
+            ).__dict__
+            for listing in listings
+        ]

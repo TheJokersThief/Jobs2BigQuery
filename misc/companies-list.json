@@ -139,7 +139,28 @@
             ["proofpoint", "https://proofpoint.wd5.myworkdayjobs.com/ProofpointCareers"],
             ["vmware", "https://vmware.wd1.myworkdayjobs.com/VMware"],
             ["broadcom", "https://broadcom.wd1.myworkdayjobs.com/External_Career"],
-            ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers/"]
+            ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers/"],
+            ["pluralsight", "https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/"]
+        ],
+        "smartrecruiters": [
+            "shopify",
+            "fireeyeinc1",
+            "westerndigital",
+            "datastax",
+            "ubisoft2",
+            "version1",
+            "aristanetworks",
+            "socialtalent",
+            "twitter2",
+            "etsy2",
+            "medable",
+            "servicenow",
+            "zencity1",
+            "devoteam",
+            "visa",
+            "ikea",
+            "numberly",
+            "nclouds"
         ]
     }
 }
