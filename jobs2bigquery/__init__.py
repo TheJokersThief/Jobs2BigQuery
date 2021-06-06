@@ -2,13 +2,14 @@ import base64
 import json
 
 from jobs2bigquery import bigquery
-from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing, WorkableListing
+from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing, WorkableListing, WorkdayListing
 
 PROCESSORS = {
     "greenhouse": GreenHouseListing,
     "lever": LeverListing,
     "hirehive": HireHiveListing,
     "workable": WorkableListing,
+    "workday": WorkdayListing,
 }
 
 
@@ -26,7 +27,11 @@ def ingest_pubsub(event, context):
 
 def process_list(bq, event, list_name, list_type_cls):
     list_items = event['lists'][list_name]
-    for company_id in list_items:
-        results = list_type_cls(company_id).get_jobs()
+    for item in list_items:
+
+        if type(item) == list:
+            results = list_type_cls(*item).get_jobs()
+        else:
+            results = list_type_cls(item).get_jobs()
         if len(results) > 0:
             bq.insert_rows(results)

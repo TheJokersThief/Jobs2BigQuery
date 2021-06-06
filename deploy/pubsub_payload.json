@@ -12,6 +12,10 @@
         ],
         "workable": [
             "tigera"
+        ],
+        "workday": [
+            ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
+            ["laya", "https://aig.wd1.myworkdayjobs.com/laya"]
         ]
     }
 }
