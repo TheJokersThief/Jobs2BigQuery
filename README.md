@@ -1,6 +1,6 @@
 # Jobs2BigQuery
 
-Imports daft data to a bigquery table in an idempotent fashion.
+Imports jobs data to a bigquery table in an idempotent fashion.
 
 ![](images/diagram.jpg)
 
