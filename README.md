@@ -2,7 +2,7 @@
 
 Imports jobs data to a bigquery table in an idempotent fashion.
 
-![](images/diagram.jpg)
+![](misc/Jobs2BigQuery%20Diagram.png)
 
 
 - [Jobs2BigQuery](#jobs2bigquery)
