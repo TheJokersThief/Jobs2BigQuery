@@ -59,12 +59,17 @@
             "wikimedia",
             "wordpressvip",
             "xapo61",
-            "zapier"
+            "zapier",
+            "unity3d",
+            "surveymonkey",
+            "asana",
+            "mongodb"
         ],
         "lever": [
             "10up-2",
             "15five",
             "angellist",
+            "anomali",
             "atlassian",
             "auth0",
             "bandcamp",
@@ -87,6 +92,7 @@
             "kernel",
             "lever",
             "linaro",
+            "logicmanager",
             "lullabot",
             "madewithlove",
             "matter",
@@ -103,23 +109,37 @@
             "toptal",
             "udemy",
             "zapier",
-            "zerotier"
+            "zerotier",
+            "dynatrace",
+            "kitmanlabs",
+            "activecampaign"
         ],
         "hirehive": [
             "voltedge",
-            "flipdish"
+            "flipdish",
+            "currencyfair"
         ],
         "workable": [
             "tigera",
             "doist",
             "dribbble",
-            "tyk-technologies"
+            "tyk-technologies",
+            "keepersecurity",
+            "fenergocareers",
+            "letsgetchecked",
+            "scurri",
+            "learnosity"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
             ["laya", "https://aig.wd1.myworkdayjobs.com/laya"],
             ["nginx", "https://ffive.wd5.myworkdayjobs.com/NGINX"],
-            ["belkin", "https://belkin.wd5.myworkdayjobs.com/belkin_careers"]
+            ["belkin", "https://belkin.wd5.myworkdayjobs.com/belkin_careers"],
+            ["trendmicro", "https://trendmicro.wd3.myworkdayjobs.com/External"],
+            ["proofpoint", "https://proofpoint.wd5.myworkdayjobs.com/ProofpointCareers"],
+            ["vmware", "https://vmware.wd1.myworkdayjobs.com/VMware"],
+            ["broadcom", "https://broadcom.wd1.myworkdayjobs.com/External_Career"],
+            ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers/"]
         ]
     }
 }
