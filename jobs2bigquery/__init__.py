@@ -2,6 +2,7 @@ import base64
 import json
 
 from jobs2bigquery import bigquery
+from jobs2bigquery.custom_jobsites.intel import IntelListing
 from jobs2bigquery.joblistings import GreenHouseListing, LeverListing, HireHiveListing, SmartRecruiterListing, WorkableListing, WorkdayListing
 
 PROCESSORS = {
@@ -11,6 +12,7 @@ PROCESSORS = {
     "workable": WorkableListing,
     "workday": WorkdayListing,
     "smartrecruiters": SmartRecruiterListing,
+    "intel": IntelListing,
 }
 
 
