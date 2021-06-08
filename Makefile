@@ -2,6 +2,7 @@
 
 PROJECT_NAME = jobs2bigquery
 PROJECT_ID ?= example-project
+SCHEDULE ?= "0 17 * * FRI"
 
 help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -51,3 +52,15 @@ publish: deploy_to_gfunctions  ## Publish project to google cloud functions
 
 add_job:  ## Adds a message to the pubsub topic, using the content in deploy/pubsub_payload.json
 	gcloud pubsub topics publish "projects/${PROJECT_ID}/topics/trigger-${PROJECT_NAME}" --message='$(shell cat deploy/pubsub_payload.json)'
+
+add_schedule:  ## Adds a Cloud Scheduler job to periodically run the job data collection
+	gcloud scheduler jobs create pubsub --project ${PROJECT_ID} jobs2bigquery \
+		--schedule ${SCHEDULE} \
+		--topic "trigger-${PROJECT_NAME}" \
+		--message-body-from-file misc/companies-list.json
+
+update_schedule:  ## Updates an existing Cloud Scheduler job
+	gcloud scheduler jobs update pubsub --project ${PROJECT_ID} jobs2bigquery \
+		--schedule ${SCHEDULE} \
+		--topic "trigger-${PROJECT_NAME}" \
+		--message-body-from-file misc/companies-list.json 
