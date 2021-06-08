@@ -133,7 +133,8 @@
             "fenergocareers",
             "letsgetchecked",
             "scurri",
-            "learnosity"
+            "learnosity",
+            "semaphore"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
@@ -165,7 +166,8 @@
             "visa",
             "ikea",
             "numberly",
-            "nclouds"
+            "nclouds",
+            "linuxfoundation"
         ],
         "intel": [
             "intel"
