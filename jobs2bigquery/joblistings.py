@@ -28,6 +28,7 @@ class BaseListing(ABC):
     def __init__(self, company_id) -> None:
         self.company_id = company_id
         self.reqs = HTTPRequests()
+        print(f"Processing Jobs For: {company_id}")
 
     @abstractmethod
     def get_jobs(self) -> List[Listing]:
@@ -115,8 +116,9 @@ class WorkdayListing(BaseListing):
 
     def get_jobs(self) -> List[Listing]:
         listings = []
-        for listing in self.get_all_job_listings():
-            job_age = listing['subtitles'][2]['instances'][0]['text']
+        for listing in self._get_all_job_listings():
+            job_age = self._extract_date_subtitle(listing)
+
             if job_age == "Posted 30+ Days Ago":
                 # If it's over 30 days old, we can't determine its date so we don't record those jobs
                 continue
@@ -145,13 +147,17 @@ class WorkdayListing(BaseListing):
 
         return listings
 
-    def get_all_job_listings(self) -> list:
+    def _get_all_job_listings(self) -> list:
         listings = []
         next_page_url = self.jobs_url
         while next_page_url:
             try:
                 results = self.reqs.get(next_page_url)
                 results = results.json()
+                if 'listItems' not in results['body']['children'][0]['children'][0]:
+                    next_page_url = None
+                    continue
+
                 listings.extend(results['body']['children'][0]['children'][0]['listItems'])
 
                 endpoints = results['body']['children'][0]['endPoints']
@@ -166,6 +172,15 @@ class WorkdayListing(BaseListing):
                 else:
                     raise e
         return listings
+
+    def _extract_date_subtitle(self, listing):
+        for subtitle in listing['subtitles']:
+            subtitle_text = subtitle['instances'][0]['text']
+            if any(
+                elm in subtitle_text
+                for elm in ['Today', 'Yesterday', 'Days Ago']
+            ):
+                return subtitle_text
 
 
 class SmartRecruiterListing(BaseListing):
