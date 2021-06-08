@@ -79,13 +79,16 @@ The main downside to my approach is that it produces a large number of duplicate
 I've used the following connection SQL to take the most recent entry for a listing:
 
 ```
-SELECT *
-FROM `jobs.job-listings`
-WHERE logged_at IN (
-    SELECT MAX(logged_at)
-    FROM `jobs.job-listings`
-    GROUP BY url
-)
+SELECT
+  * EXCEPT(row_num)
+FROM (
+  SELECT
+    *,
+    ROW_NUMBER() OVER (PARTITION BY url ORDER BY logged_at DESC) AS row_num
+  FROM
+    `jobs.job-listings`)t
+WHERE
+  row_num=1
 ```
 
 ![](misc/preview.png)
