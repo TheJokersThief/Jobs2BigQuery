@@ -45,7 +45,16 @@ ifeq ($(shell gcloud --project=iamevan-me pubsub topics list --filter="name~trig
 endif
 
 deploy_to_gfunctions: create_pubsub_topic export_conf
-	gcloud functions deploy ${PROJECT_NAME} --region europe-west1 --project ${PROJECT_ID} --runtime python38 --memory 256MB --entry-point execute_jobs2bigquery --trigger-topic "trigger-${PROJECT_NAME}" --timeout 540s --max-instances 1
+	gcloud functions deploy ${PROJECT_NAME} \
+		--region europe-west1 \
+		--project ${PROJECT_ID} \
+		--runtime python38 \
+		--memory 256MB \
+		--entry-point execute_jobs2bigquery \
+		--trigger-topic "trigger-${PROJECT_NAME}" \
+		--set-env-vars GOOGLE_CLOUD_PROJECT=${PROJECT_ID},TOPIC_NAME=trigger-${PROJECT_NAME} \
+		--timeout 540s \
+		--max-instances 4
 
 publish: deploy_to_gfunctions  ## Publish project to google cloud functions
 	@echo "Published"

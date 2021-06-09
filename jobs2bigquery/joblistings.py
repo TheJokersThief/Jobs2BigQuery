@@ -119,7 +119,7 @@ class WorkdayListing(BaseListing):
         for listing in self._get_all_job_listings():
             job_age = self._extract_date_subtitle(listing)
 
-            if job_age == "Posted 30+ Days Ago":
+            if job_age == "Posted 30+ Days Ago" or not job_age:
                 # If it's over 30 days old, we can't determine its date so we don't record those jobs
                 continue
 

@@ -1,5 +1,7 @@
 from google.cloud import bigquery
 
+from jobs2bigquery.utils import divide_chunks
+
 
 class BigQuery():
     REMOVE_DUPLICATES_QUERY = """
@@ -22,7 +24,7 @@ class BigQuery():
 
     def insert_rows(self, rows):
         if len(rows) > 1000:
-            for chunk in self._divide_chunks(rows, 1000):
+            for chunk in divide_chunks(rows, 1000):
                 self.insert_rows(chunk)
         else:
             errors = self.client.insert_rows_json(
@@ -38,8 +40,3 @@ class BigQuery():
         query = self.REMOVE_DUPLICATES_QUERY.format(table_id=self.table_id)
         query_job = self.client.query(query)
         return query_job.result()  # Wait for job to finish
-
-    def _divide_chunks(self, list_to_chunk, chunk_size):
-        # looping till length l
-        for i in range(0, len(list_to_chunk), chunk_size):
-            yield list_to_chunk[i:i + chunk_size]
