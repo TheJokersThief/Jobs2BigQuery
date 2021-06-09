@@ -8,7 +8,7 @@ from jobs2bigquery import bigquery
 from jobs2bigquery.custom_jobsites.intel import IntelListing
 from jobs2bigquery.joblistings import (
     GreenHouseListing, LeverListing, HireHiveListing, SmartRecruiterListing,
-    WorkableListing, WorkdayListing
+    WorkableListing, WorkdayListing, RecruiteeListing
 )
 from jobs2bigquery.utils import divide_chunks
 
@@ -19,6 +19,7 @@ PROCESSORS = {
     "workable": WorkableListing,
     "workday": WorkdayListing,
     "smartrecruiters": SmartRecruiterListing,
+    "recruitee": RecruiteeListing,
     "intel": IntelListing,
 }
 

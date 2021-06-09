@@ -109,6 +109,23 @@ class WorkableListing(BaseListing):
         ]
 
 
+class RecruiteeListing(BaseListing):
+    LISTING_URL = "https://{company_id}.recruitee.com/api/offers/"
+
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(self.LISTING_URL.format(company_id=self.company_id)).json()['offers']
+        return [
+            Listing(
+                company=self.company_id,
+                url=listing['careers_url'], content=md(listing['description']),
+                location=[listing['location']],
+                department=[listing['department'] or "None"],
+                last_updated=listing['created_at'], title=listing['title'].strip()
+            ).__dict__
+            for listing in listings
+        ]
+
+
 class WorkdayListing(BaseListing):
     def __init__(self, company_id, jobs_url) -> None:
         super().__init__(company_id)
