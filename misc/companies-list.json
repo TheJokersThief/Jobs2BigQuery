@@ -148,7 +148,8 @@
             ["vmware", "https://vmware.wd1.myworkdayjobs.com/VMware"],
             ["broadcom", "https://broadcom.wd1.myworkdayjobs.com/External_Career"],
             ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers/"],
-            ["pluralsight", "https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/"]
+            ["pluralsight", "https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/"],
+            ["dell", "https://dell.wd1.myworkdayjobs.com/External"]
         ],
         "smartrecruiters": [
             "shopify",
