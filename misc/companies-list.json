@@ -1,5 +1,6 @@
 {
     "bq_table_id": "jobs.job-listings",
+    "trim_duplicates": true,
     "lists": {
         "greenhouse": [
             "appneta",
@@ -69,7 +70,8 @@
             "appsumocareers",
             "fastly",
             "cockroachlabs",
-            "netskope"
+            "netskope",
+            "bugcrowd"
         ],
         "lever": [
             "10up-2",

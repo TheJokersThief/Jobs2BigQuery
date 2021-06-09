@@ -1,27 +1,6 @@
 {
     "bq_table_id": "jobs.job-listings",
+    "trim_duplicates": true,
     "lists": {
-        "greenhouse": [
-            "notion"
-        ],
-        "lever": [
-            "grafana"
-        ],
-        "hirehive": [
-            "voltedge"
-        ],
-        "workable": [
-            "tigera"
-        ],
-        "workday": [
-            ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
-            ["laya", "https://aig.wd1.myworkdayjobs.com/laya"]
-        ],
-        "smartrecruiters": [
-            "shopify"
-        ],
-        "intel": [
-            "intel"
-        ]
     }
 }

@@ -27,6 +27,10 @@ def ingest_pubsub(event, context):
         if list_name in event['lists']:
             process_list(bq, event, list_name, list_cls)
 
+    if event.get('trim_duplicates', False):
+        bq.remove_duplicates()
+        print("Removed duplicate entries")
+
 
 def process_list(bq, event, list_name, list_type_cls):
     list_items = event['lists'][list_name]
