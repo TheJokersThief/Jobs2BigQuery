@@ -227,3 +227,30 @@ class SmartRecruiterListing(BaseListing):
             ).__dict__
             for listing in listings
         ]
+
+
+class ComeetListing(BaseListing):
+    LISTING_URL = "https://www.comeet.co/careers-api/2.0/company/{company_uid}/positions?token={token}"
+
+    def __init__(self, company_id, company_uid, token) -> None:
+        super().__init__(company_id)
+        self.company_uid = company_uid
+        self.token = token
+
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(
+            self.LISTING_URL.format(
+                company_uid=self.company_uid,
+                token=self.token,
+            )
+        ).json()
+        return [
+            Listing(
+                company=self.company_id,
+                url=listing['url_comeet_hosted_page'], content="None",
+                location=[listing['location']['name'] if listing['location'] is not None else "None"],
+                department=[listing['department'] or "None"],
+                last_updated=listing['time_updated'], title=listing['name'].strip()
+            ).__dict__
+            for listing in listings
+        ]
