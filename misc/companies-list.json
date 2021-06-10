@@ -72,7 +72,8 @@
             "fastly",
             "cockroachlabs",
             "netskope",
-            "bugcrowd"
+            "bugcrowd",
+            "tines"
         ],
         "lever": [
             "10up-2",
@@ -140,7 +141,9 @@
             "scurri",
             "learnosity",
             "semaphore",
-            "vultr"
+            "vultr",
+            "intellisense-io",
+            "futurepath"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
