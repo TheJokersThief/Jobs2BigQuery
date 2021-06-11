@@ -75,7 +75,8 @@
             "bugcrowd",
             "tines",
             "lunchbox",
-            "thoughtworks"
+            "thoughtworks",
+            "futurepath"
         ],
         "lever": [
             "10up-2",
@@ -146,8 +147,7 @@
             "learnosity",
             "semaphore",
             "vultr",
-            "intellisense-io",
-            "futurepath"
+            "intellisense-io"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
@@ -191,9 +191,6 @@
             "hotjar",
             "trustedshops"
         ],
-        "intel": [
-            "intel"
-        ],
         "comeet": [
             ["flightaware", "F5.00A", "5FA23DC017E823DC029D629D61DE21DE2"],
             ["fiverr", "60.002", "62188018812631018862C4188"],
@@ -202,6 +199,12 @@
             ["illusive", "51.00B", "15B56C56CC3308226C797D2B697D"],
             ["team8", "61.003", "16358C6EF2C61631639B558C0429"],
             ["checkmarx", "C0.008", "C83201900025819004B0320"]
+        ],
+        "intel": [
+            "intel"
+        ],
+        "google": [
+            "google"
         ]
     }
 }

@@ -6,6 +6,7 @@ from google.cloud import pubsub_v1
 
 from jobs2bigquery import bigquery
 from jobs2bigquery.custom_jobsites.intel import IntelListing
+from jobs2bigquery.custom_jobsites.google import GoogleListing
 from jobs2bigquery.joblistings import (
     GreenHouseListing, LeverListing, HireHiveListing, SmartRecruiterListing,
     WorkableListing, WorkdayListing, RecruiteeListing, ComeetListing
@@ -20,8 +21,10 @@ PROCESSORS = {
     "workday": WorkdayListing,
     "smartrecruiters": SmartRecruiterListing,
     "recruitee": RecruiteeListing,
-    "intel": IntelListing,
     "comeet": ComeetListing,
+
+    "intel": IntelListing,
+    "google": GoogleListing,
 }
 
 
