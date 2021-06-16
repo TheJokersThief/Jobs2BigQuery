@@ -49,7 +49,7 @@ deploy_to_gfunctions: create_pubsub_topic export_conf
 		--region europe-west1 \
 		--project ${PROJECT_ID} \
 		--runtime python38 \
-		--memory 256MB \
+		--memory 512MB \
 		--entry-point execute_jobs2bigquery \
 		--trigger-topic "trigger-${PROJECT_NAME}" \
 		--set-env-vars GOOGLE_CLOUD_PROJECT=${PROJECT_ID},TOPIC_NAME=trigger-${PROJECT_NAME} \
