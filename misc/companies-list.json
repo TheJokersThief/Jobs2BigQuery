@@ -90,7 +90,13 @@
             "skilljar",
             "liquibase",
             "beat",
-            "trustpilot"
+            "trustpilot",
+            "databricks",
+            "knowbe4",
+            "smartly",
+            "beyondtrust",
+            "dropbox",
+            "docusign"
         ],
         "lever": [
             "10up-2",
@@ -148,7 +154,11 @@
             "relayr",
             "color",
             "ada",
-            "snowplowanalytics"
+            "snowplowanalytics",
+            "justwatch",
+            "Teamblind",
+            "guidewire",
+            "coupa"
         ],
         "hirehive": [
             "voltedge",
@@ -187,7 +197,12 @@
             ["dell", "https://dell.wd1.myworkdayjobs.com/External"],
             ["wpengine", "https://wpengine.wd1.myworkdayjobs.com/WP_Engine"],
             ["equinix", "https://equinix.wd1.myworkdayjobs.com/External"],
-            ["athenahealth", "https://athenahealth.wd1.myworkdayjobs.com/External"]
+            ["athenahealth", "https://athenahealth.wd1.myworkdayjobs.com/External"],
+            ["hp", "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/"],
+            ["autodesk", "https://autodesk.wd1.myworkdayjobs.com/Ext"],
+            ["planetpayments", "https://planet.wd3.myworkdayjobs.com/en-US/Planet"],
+            ["tableau", "https://salesforce.wd1.myworkdayjobs.com/Tableau"],
+            ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"]
         ],
         "smartrecruiters": [
             "shopify",
@@ -209,7 +224,8 @@
             "numberly",
             "nclouds",
             "linuxfoundation",
-            "Literati"
+            "Literati",
+            "Astreya"
         ],
         "recruitee": [
             "renalytixai",
