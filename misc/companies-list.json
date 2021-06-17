@@ -88,7 +88,8 @@
             "contentful",
             "stitchfix",
             "skilljar",
-            "liquibase"
+            "liquibase",
+            "beat"
         ],
         "lever": [
             "10up-2",
