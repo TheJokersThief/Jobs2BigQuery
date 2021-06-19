@@ -96,7 +96,15 @@
             "smartly",
             "beyondtrust",
             "dropbox",
-            "docusign"
+            "docusign",
+            "animalz",
+            "oddball",
+            "doximity",
+            "customerio",
+            "silverfin",
+            "moveonorg",
+            "alphasights",
+            "bevy"
         ],
         "lever": [
             "10up-2",
@@ -158,7 +166,15 @@
             "justwatch",
             "Teamblind",
             "guidewire",
-            "coupa"
+            "coupa",
+            "stickermule",
+            "close.io",
+            "teamsnap",
+            "kinsta",
+            "spreedly",
+            "ebury",
+            "logikcull",
+            "dataquest"
         ],
         "hirehive": [
             "voltedge",
@@ -181,7 +197,17 @@
             "ravelin",
             "linear-financial-technologies-llc",
             "actioniq",
-            "forwardpmx"
+            "forwardpmx",
+            "harvest",
+            "hubstaff",
+            "leadfeeder",
+            "stackbuilders",
+            "intellum-inc",
+            "g2i-inc",
+            "trv",
+            "awesomemotive",
+            "growth-machine",
+            "convertkit"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
@@ -232,7 +258,8 @@
             "aulaeducation",
             "bunq",
             "hotjar",
-            "trustedshops"
+            "trustedshops",
+            "dockyardinc1"
         ],
         "comeet": [
             ["flightaware", "F5.00A", "5FA23DC017E823DC029D629D61DE21DE2"],
