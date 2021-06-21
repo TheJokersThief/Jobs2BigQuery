@@ -41,7 +41,8 @@
             "bevy", "soundcloud71",
             "influxdb", "appsumocareers",
             "tanium", "fastly", "pandadoc",
-            "heap", "rasa", "d2iq"
+            "heap", "rasa", "d2iq",
+            "xgeeks", "auviknetworks"
         ],
         "lever": [
             "10up-2", "pagerduty",
@@ -82,7 +83,7 @@
             "clabs", "degreed",
             "beyondpricing", "covariant",
             "bighealth", "hackerone",
-            "swapcard"
+            "swapcard", "coalitioninc"
         ],
         "hirehive": [
             "voltedge",
@@ -117,7 +118,10 @@
             "growth-machine",
             "convertkit",
             "codemonk",
-            "io-global"
+            "io-global",
+            "lifebit-biotech-ltd",
+            "advicefront",
+            "mawla-team"
         ],
         "workday": [
             ["adobe", "https://adobe.wd5.myworkdayjobs.com/external_experienced"],
@@ -138,7 +142,8 @@
             ["autodesk", "https://autodesk.wd1.myworkdayjobs.com/Ext"],
             ["planetpayments", "https://planet.wd3.myworkdayjobs.com/en-US/Planet"],
             ["tableau", "https://salesforce.wd1.myworkdayjobs.com/Tableau"],
-            ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"]
+            ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"],
+            ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"]
         ],
         "smartrecruiters": [
             "shopify",
