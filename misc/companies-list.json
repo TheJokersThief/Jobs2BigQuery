@@ -42,7 +42,8 @@
             "influxdb", "appsumocareers",
             "tanium", "fastly", "pandadoc",
             "heap", "rasa", "d2iq",
-            "xgeeks", "auviknetworks"
+            "xgeeks", "auviknetworks", "armory",
+            "stackhawk", "codefresh", "puppetinc"
         ],
         "lever": [
             "10up-2", "pagerduty",
