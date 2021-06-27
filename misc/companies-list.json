@@ -144,7 +144,8 @@
             ["planetpayments", "https://planet.wd3.myworkdayjobs.com/en-US/Planet"],
             ["tableau", "https://salesforce.wd1.myworkdayjobs.com/Tableau"],
             ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"],
-            ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"]
+            ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"],
+            ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site/"]
         ],
         "smartrecruiters": [
             "shopify",
