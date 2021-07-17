@@ -43,7 +43,8 @@
             "tanium", "fastly", "pandadoc",
             "heap", "rasa", "d2iq",
             "xgeeks", "auviknetworks", "armory",
-            "stackhawk", "codefresh", "puppetinc"
+            "stackhawk", "codefresh", "puppetinc",
+            "ns1"
         ],
         "lever": [
             "10up-2", "pagerduty",
