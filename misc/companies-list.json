@@ -147,7 +147,8 @@
             ["tableau", "https://salesforce.wd1.myworkdayjobs.com/Tableau"],
             ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"],
             ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"],
-            ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site/"]
+            ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site/"],
+            ["crowdstrike", "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers"]
         ],
         "smartrecruiters": [
             "shopify",
