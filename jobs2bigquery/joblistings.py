@@ -66,6 +66,7 @@ class LeverListing(BaseListing):
                 last_updated=listing['createdAt'] // 1000, title=listing['text'].strip()
             ).__dict__
             for listing in listings
+            if "location" in listing['categories']
         ]
 
 
