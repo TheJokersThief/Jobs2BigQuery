@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import time
 
 from google.cloud import pubsub_v1
 
@@ -57,6 +58,7 @@ def split_work(event) -> None:
                 chunk_payload['lists'] = {}
                 chunk_payload['lists'][list_name] = chunk
                 publisher.publish(topic_name, bytes(json.dumps(chunk_payload), 'utf-8'))
+                time.sleep(5)
 
 
 def process_single_workload(event) -> None:

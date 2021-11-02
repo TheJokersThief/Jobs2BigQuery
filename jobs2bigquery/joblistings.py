@@ -172,7 +172,7 @@ class WorkdayListing(BaseListing):
             try:
                 results = self.reqs.get(next_page_url)
                 results = results.json()
-                if 'listItems' not in results['body']['children'][0]['children'][0]:
+                if 'body' in results and 'listItems' not in results['body']['children'][0]['children'][0]:
                     next_page_url = None
                     continue
 

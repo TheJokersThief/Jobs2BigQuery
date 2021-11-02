@@ -16,7 +16,7 @@
             "opentable", "poppulo", "dashlane",
             "templafy", "renttherunway", "datadog",
             "seatgeek", "sentry", "digitalocean98",
-            "flashpoint", "slack", "discord",
+            "flashpoint", "discord",
             "xevo", "snyk", "elastic",
             "appannie", "sourcegraph91", "envato",
             "contentful", "squarespace", "evernote",
@@ -148,7 +148,8 @@
             ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"],
             ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"],
             ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site/"],
-            ["crowdstrike", "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers"]
+            ["crowdstrike", "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers"],
+            ["slack", "https://salesforce.wd1.myworkdayjobs.com/Slack"]
         ],
         "smartrecruiters": [
             "shopify",
