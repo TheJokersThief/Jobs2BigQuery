@@ -54,7 +54,7 @@ deploy_to_gfunctions: create_pubsub_topic export_conf
 		--trigger-topic "trigger-${PROJECT_NAME}" \
 		--set-env-vars GOOGLE_CLOUD_PROJECT=${PROJECT_ID},TOPIC_NAME=trigger-${PROJECT_NAME} \
 		--timeout 540s \
-		--max-instances 4
+		--max-instances 10
 
 publish: deploy_to_gfunctions  ## Publish project to google cloud functions
 	@echo "Published"
