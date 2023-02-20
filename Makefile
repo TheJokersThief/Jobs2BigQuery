@@ -72,4 +72,5 @@ update_schedule:  ## Updates an existing Cloud Scheduler job
 	gcloud scheduler jobs update pubsub --project ${PROJECT_ID} jobs2bigquery \
 		--schedule ${SCHEDULE} \
 		--topic "trigger-${PROJECT_NAME}" \
-		--message-body-from-file misc/companies-list.json 
+		--message-body-from-file misc/companies-list.json \
+		--location europe-west3
