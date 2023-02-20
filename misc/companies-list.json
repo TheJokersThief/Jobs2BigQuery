@@ -1,5 +1,5 @@
 {
-    "action": "check_urls",
+    "action": "get_jobs",
     "bq_table_id": "jobs.job-listings",
     "trim_duplicates": true,
     "split_work": true,
@@ -129,8 +129,8 @@
             ["proofpoint", "https://proofpoint.wd5.myworkdayjobs.com/ProofpointCareers"],
             ["vmware", "https://vmware.wd1.myworkdayjobs.com/VMware"],
             ["broadcom", "https://broadcom.wd1.myworkdayjobs.com/External_Career"],
-            ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers/"],
-            ["pluralsight", "https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/"],
+            ["rapid7", "https://mymoose.wd1.myworkdayjobs.com/careers"],
+            ["pluralsight", "https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers"],
             ["dell", "https://dell.wd1.myworkdayjobs.com/External"],
             ["wpengine", "https://wpengine.wd1.myworkdayjobs.com/WP_Engine"],
             ["equinix", "https://equinix.wd1.myworkdayjobs.com/External"],
@@ -141,7 +141,7 @@
             ["tableau", "https://salesforce.wd1.myworkdayjobs.com/Tableau"],
             ["expedia", "https://expedia.wd5.myworkdayjobs.com/en-US/search"],
             ["faro", "https://faro.wd1.myworkdayjobs.com/en-US/FARO"],
-            ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site/"],
+            ["salesforce", "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site"],
             ["crowdstrike", "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers"],
             ["slack", "https://salesforce.wd1.myworkdayjobs.com/Slack"]
         ],

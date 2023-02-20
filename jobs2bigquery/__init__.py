@@ -41,6 +41,9 @@ def ingest_pubsub(event, context):
         return process_single_workload(event)
     elif action == 'check_urls':
         return check_urls(event)
+    elif action == 'trim_duplicates':
+        bq = bigquery.BigQuery(event)
+        return bq.remove_duplicates()
 
 
 def split_work(event) -> None:
@@ -50,9 +53,13 @@ def split_work(event) -> None:
         topic=os.getenv('TOPIC_NAME'),
     )
 
+    chunk_size = event.get("chunk_size", 5)
+    trim_dupes = event.get('trim_duplicates', False)
+    event['trim_duplicates'] = False
+
     for list_name, list_cls in PROCESSORS.items():
         if list_name in event['lists']:
-            for chunk in divide_chunks(event['lists'][list_name], 5):
+            for chunk in divide_chunks(event['lists'][list_name], chunk_size):
                 chunk_payload = event.copy()
 
                 # Don't split the new payload
@@ -64,6 +71,10 @@ def split_work(event) -> None:
                 publisher.publish(topic_name, bytes(json.dumps(chunk_payload), 'utf-8'))
                 time.sleep(5)
 
+    if trim_dupes:
+        payload = {'action': 'trim_duplicates', 'bq_table_id': event['bq_table_id']}
+        publisher.publish(topic_name, bytes(json.dumps(payload), 'utf-8'))
+
 
 def process_single_workload(event) -> None:
     bq = bigquery.BigQuery(event)
@@ -71,10 +82,6 @@ def process_single_workload(event) -> None:
     for list_name, list_cls in PROCESSORS.items():
         if list_name in event['lists']:
             process_list(bq, event, list_name, list_cls)
-
-    if event.get('trim_duplicates', False):
-        bq.remove_duplicates()
-        print("Removed duplicate entries")
 
 
 def process_list(bq, event, list_name, list_type_cls) -> None:

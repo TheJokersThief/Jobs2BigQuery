@@ -143,13 +143,13 @@ class WorkdayListing(BaseListing):
     def get_jobs(self) -> List[Listing]:
         listings = []
         for listing in self._get_all_job_listings():
-            job_age = self._extract_date_subtitle(listing)
+            job_age = listing['postedOn']
 
             if job_age == "Posted 30+ Days Ago" or not job_age:
                 # If it's over 30 days old, we can't determine its date so we don't record those jobs
                 continue
 
-            job_url = urljoin(self.jobs_url, listing['title']['commandLink'])
+            job_url = urljoin(self.jobs_url, listing['externalPath'])
 
             # If today, the datetime is now
             job_date = datetime.now()
@@ -166,8 +166,8 @@ class WorkdayListing(BaseListing):
             listings.append(
                 Listing(
                     company=self.company_id, url=job_url, content=None,
-                    location=[listing['subtitles'][1]['instances'][0]['text']], department=["None"],
-                    last_updated=job_date, title=listing['title']['instances'][0]['text']
+                    location=[listing['locationsText']], department=["None"],
+                    last_updated=job_date, title=listing['title']
                 ).__dict__
             )
 
@@ -175,38 +175,25 @@ class WorkdayListing(BaseListing):
 
     def _get_all_job_listings(self) -> list:
         listings = []
-        next_page_url = self.jobs_url
-        while next_page_url:
-            try:
-                results = self.reqs.get(next_page_url)
-                results = results.json()
-                if 'body' in results and 'listItems' not in results['body']['children'][0]['children'][0]:
-                    next_page_url = None
-                    continue
 
-                listings.extend(results['body']['children'][0]['children'][0]['listItems'])
+        *url_pieces, final_piece = self.jobs_url.split('/')
+        url = urljoin('/'.join(url_pieces), f"/wday/cxs/{self.company_id}/{final_piece}/jobs")
 
-                endpoints = results['body']['children'][0]['endPoints']
-                for endpoint in endpoints:
-                    if endpoint['type'] == 'Pagination':
-                        next_page_url = urljoin(self.jobs_url, endpoint['uri']) + "/" + str(len(listings))
-                        break
-            except requests.exceptions.HTTPError as e:
-                # If the response was a 404, there's no more results, else it's a real error
-                if e.response.status_code == 404:
-                    next_page_url = None
-                else:
-                    raise e
+        next_page_url = url
+        offset = 0
+        per_page = 20
+        total = 999
+        while total >= offset:
+            results = self.reqs.post(next_page_url, data={'searchText': '', 'offset': offset})
+            results = results.json()
+
+            jobs = results['jobPostings']
+            total = results['total']
+
+            listings.extend(jobs)
+            offset += per_page
+
         return listings
-
-    def _extract_date_subtitle(self, listing):
-        for subtitle in listing['subtitles']:
-            subtitle_text = subtitle['instances'][0]['text']
-            if any(
-                elm in subtitle_text
-                for elm in ['Today', 'Yesterday', 'Days Ago']
-            ):
-                return subtitle_text
 
 
 class SmartRecruiterListing(BaseListing):
@@ -243,6 +230,7 @@ class ComeetListing(BaseListing):
 
     def __init__(self, company_name, company_id, token) -> None:
         super().__init__(company_name)
+        self.company_name = company_name
         self.company_id = company_id
         self.token = token
         self.LISTING_URL = self.LISTING_URL_TMPL.format(

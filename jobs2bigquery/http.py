@@ -37,7 +37,7 @@ class HTTPRequests():
         req.raise_for_status()
         return req
 
-    def post(self, url, params=None):
-        req = self.site.post(url, params=params)
+    def post(self, url, data=None):
+        req = self.site.post(url, json=data)
         req.raise_for_status()
         return req
