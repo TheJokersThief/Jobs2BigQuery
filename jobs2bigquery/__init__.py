@@ -34,9 +34,13 @@ def ingest_pubsub(event, context):
         data = str(base64.b64decode(event['data']), 'utf-8')
         event = json.loads(data)
 
-    if event.get('split_work', False):
-        return split_work(event)
-    return process_single_workload(event)
+    action = event.get('action', 'get_jobs')
+    if action == 'get_jobs':
+        if event.get('split_work', False):
+            return split_work(event)
+        return process_single_workload(event)
+    elif action == 'check_urls':
+        return check_urls(event)
 
 
 def split_work(event) -> None:
@@ -83,3 +87,18 @@ def process_list(bq, event, list_name, list_type_cls) -> None:
             results = list_type_cls(item).get_jobs()
         if len(results) > 0:
             bq.insert_rows(results)
+
+def check_urls(event) -> None:
+    results = []
+    for list_name, list_cls in PROCESSORS.items():
+        if list_name in event['lists']:
+            list_items = event['lists'][list_name]
+            for item in list_items:
+                if type(item) == list:
+                    results.append(
+                        [item, list_cls(*item).check_url()])
+                else:
+                    results.append(
+                        [item, list_cls(item).check_url()])
+    
+    print(json.dumps(results))

@@ -34,6 +34,14 @@ class BaseListing(ABC):
     def get_jobs(self) -> List[Listing]:
         pass
 
+    def check_url(self) -> bool:
+        if hasattr(self, "LISTING_URL") and self.LISTING_URL:
+            try:
+                resp = self.reqs.get(self.LISTING_URL.format(company_id=self.company_id))
+                return resp.status_code == 200
+            except requests.exceptions.HTTPError as e:
+                return e.response.status_code == 200
+
 
 class GreenHouseListing(BaseListing):
     LISTING_URL = "https://boards-api.greenhouse.io/v1/boards/{company_id}/jobs?content=true"
@@ -231,23 +239,22 @@ class SmartRecruiterListing(BaseListing):
 
 
 class ComeetListing(BaseListing):
-    LISTING_URL = "https://www.comeet.co/careers-api/2.0/company/{company_uid}/positions?token={token}"
+    LISTING_URL_TMPL = "https://www.comeet.co/careers-api/2.0/company/{company_id}/positions?token={token}"
 
-    def __init__(self, company_id, company_uid, token) -> None:
-        super().__init__(company_id)
-        self.company_uid = company_uid
+    def __init__(self, company_name, company_id, token) -> None:
+        super().__init__(company_name)
+        self.company_id = company_id
         self.token = token
-
-    def get_jobs(self) -> List[Listing]:
-        listings = self.reqs.get(
-            self.LISTING_URL.format(
-                company_uid=self.company_uid,
+        self.LISTING_URL = self.LISTING_URL_TMPL.format(
+                company_id=self.company_id,
                 token=self.token,
             )
-        ).json()
+
+    def get_jobs(self) -> List[Listing]:
+        listings = self.reqs.get(self.LISTING_URL).json()
         return [
             Listing(
-                company=self.company_id,
+                company=self.company_name,
                 url=listing['url_comeet_hosted_page'], content="None",
                 location=[listing['location']['name'] if listing['location'] is not None else "None"],
                 department=[listing['department'] or "None"],
