@@ -15,6 +15,25 @@ Imports jobs data to a bigquery table in an idempotent fashion.
 
 
 
+**Make commands:**
+
+```bash
+$ make help
+
+add_job                        Adds a message to the pubsub topic, using the content in deploy/pubsub_payload.json
+add_schedule                   Adds a Cloud Scheduler job to periodically run the job data collection
+coverage                       Output coverage stats
+dev                            Install project and dev dependencies
+export_conf                    Export the poetry lockfile to requirements.txt
+help                           Show help
+install                        Install project without dev dependencies
+lint                           Lint files for common errors and styling fixes
+publish                        Publish project to google cloud functions
+test                           Run unit tests
+update_schedule                Updates an existing Cloud Scheduler job
+```
+
+
 # Setting up a bigquery table
 I did this through the UI and used the schema in [deploy/bigquery_example_schema.json](deploy/bigquery_example_schema.json). There's probably a much neater way with the `gcloud` CLI but a once-off isn't so bad.
 
