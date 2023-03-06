@@ -10,7 +10,8 @@ from jobs2bigquery.custom_jobsites.intel import IntelListing
 from jobs2bigquery.custom_jobsites.google import GoogleListing
 from jobs2bigquery.joblistings import (
     GreenHouseListing, LeverListing, HireHiveListing, SmartRecruiterListing,
-    WorkableListing, WorkdayListing, RecruiteeListing, ComeetListing
+    WorkableListing, WorkdayListing, RecruiteeListing, ComeetListing,
+    AshbyHQListing
 )
 from jobs2bigquery.utils import divide_chunks
 
@@ -23,6 +24,7 @@ PROCESSORS = {
     "smartrecruiters": SmartRecruiterListing,
     "recruitee": RecruiteeListing,
     "comeet": ComeetListing,
+    "ashbyhq": AshbyHQListing,
 
     "intel": IntelListing,
     "google": GoogleListing,

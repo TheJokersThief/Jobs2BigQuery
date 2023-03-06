@@ -134,6 +134,67 @@ class RecruiteeListing(BaseListing):
             for listing in listings
         ]
 
+class AshbyHQListing(BaseListing):
+    LISTING_URL = "https://jobs.ashbyhq.com/{company_id}"
+    GRAPHQL_URL = "https://jobs.ashbyhq.com/api/non-user-graphql"
+
+    QUERY="""query ApiJobBoardWithTeams($organizationHostedJobsPageName: String!) {
+          jobBoard: jobBoardWithTeams(
+            organizationHostedJobsPageName: $organizationHostedJobsPageName
+      ) {
+            teams {
+              id
+          name
+          parentTeamId
+          __typename
+        }
+        jobPostings {
+              id
+          title
+          teamId
+          locationId
+          locationName
+          employmentType
+          secondaryLocations {
+                ...JobPostingSecondaryLocationParts
+            __typename
+          }
+          compensationTierSummary
+          __typename
+        }
+        __typename
+      }
+    }
+    
+    fragment JobPostingSecondaryLocationParts on JobPostingSecondaryLocation {
+          locationId
+      locationName
+      __typename
+    }"""
+    OPERATION = "ApiJobBoardWithTeams"
+
+    def get_jobs(self) -> List[Listing]:
+        search_payload = {
+            "query": self.QUERY,
+            "operationName": self.OPERATION,
+            "variables": {"organizationHostedJobsPageName": self.company_id}
+        }
+        data = self.reqs.post(self.GRAPHQL_URL, data=search_payload).json()['data']['jobBoard']
+
+        listings = data['jobPostings']
+        teams = {team['id']: team['name'] for team in data['teams']}
+        return [
+            Listing(
+                company=self.company_id,
+                url=urljoin(self.LISTING_URL.format(company_id=self.company_id), f"/{listing['id']}"), 
+                content="",
+                location=[listing['locationName']],
+                department=[teams[listing['teamId']] or "None"],
+                last_updated=None, title=listing['title'].strip()
+            ).__dict__
+            for listing in listings
+        ]
+
 
 class WorkdayListing(BaseListing):
     def __init__(self, company_id, jobs_url) -> None:
